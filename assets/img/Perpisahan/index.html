@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <section>
+        <h1>Album 24F</h1>
+
+        <div class="product">
+            <img src="./img/Per1.jpg" onclick="redirectTo('./img/Per1.jpg')">
+            <img src="./img/Per2.jpg" onclick="redirectTo('./img/Per2.jpg')">
+            <img src="./img/Per3.jpg" onclick="redirectTo('./img/Per3.jpg')">
+            <img src="./img/Per4.jpg" onclick="redirectTo('./img/Per4.jpg')">
+            <img src="./img/Per5.jpg" onclick="redirectTo('./img/Per5.jpg')">
+        </div>
+    </section>
+<script type="text/javascript" charset="utf-8">
+  function redirectTo(url) {
+  window.location.href = url;
+}
+
+function disableContextMenu(event) {
+  event.preventDefault();
+}
+
+function addCustomStyle() {
+  var styleElement = document.createElement('style');
+  var cssCode = `
+    .product img {
+      user-select: none;
+    }
+  `;
+
+  styleElement.type = 'text/css';
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = cssCode;
+  } else {
+    styleElement.appendChild(document.createTextNode(cssCode));
+  }
+
+  document.head.appendChild(styleElement);
+
+  var images = document.querySelectorAll('.product img');
+  images.forEach(function(image) {
+    image.addEventListener('contextmenu', disableContextMenu);
+  });
+}
+
+// Panggil fungsi addCustomStyle untuk menambahkan kode CSS dan menangani event context menu
+addCustomStyle();
+</script>
+</body>
+</html>
